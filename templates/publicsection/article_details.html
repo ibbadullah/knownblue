@@ -1,0 +1,101 @@
+{% extends 'publicsection/base.html' %}
+{% load static %}
+
+{% block title %}{{ A.article_title }}{% endblock %}
+
+{% block description %}{{ A.artilce_meta_des }}{% endblock %}
+{% block keywords %}{{ A.article_keywords }}{% endblock %}
+{% block author %}{{ A.article_author }}{% endblock %}
+{% block robots %}index, follow{% endblock %}
+
+{% block ogtitle %}{{ A.article_title }}{% endblock %}
+{% block ogdescription %}{{ A.artilce_meta_des }}{% endblock %}
+{% block ogurl %}https://knownblue.com/{{ A.Category.category_slug }}/{{ A.article_slug }}/{% endblock %}
+{% block ogimage %}https://knownblue.com{{ A.article_image.url }}{% endblock %}
+
+{% block twittertitle %}{{ A.article_title }}{% endblock %}
+{% block twitterdescription %}{{ A.artilce_meta_des }}{% endblock %}
+{% block twitterimage %}https://knownblue.com{{ A.article_image.url }}{% endblock %}
+
+{% block pageurl %}https://knownblue.com/{{ A.Category.category_slug }}/{{ A.article_slug }}/{% endblock %}
+
+{% block content %}
+
+        <!-- Single News Start-->
+        <div class="single-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="sn-container">
+                            <div class="sn-img">
+                                {% comment %}<img src="{{ A.article_image.url }}" alt="{{ A.article_title }}"/>{% endcomment %}
+                            </div>
+                            <div class="sn-content">
+                                <h1 class="sn-title">{{ A.article_title }}</h1>
+                                <p class="articleContent">
+                                    {{ A.article_content|safe }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="sn-related">
+                            <h2>Related Content</h2>
+                            <div class="row sn-slider">
+                                {% for r in RelatedArticles|slice:"8" %}
+                                    <div class="col-md-4">
+                                        <div class="sn-img">
+                                            <img src="{{ r.article_image.url }}" alt="{{ r.article_title }}" />
+                                            <div class="sn-title">
+                                                <a href="{% url 'GetSingleArticle' r.Category.category_slug r.article_slug %}">{{ r.article_title }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="sidebar">
+                            <div class="sidebar-widget">
+                                <h2 class="sw-title">Recent</h2>
+                                <div class="news-list">
+                                    {% for article in Articles|slice:"10" %}
+                                        <div class="nl-item">
+                                            <div class="nl-img">
+                                                <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}" />
+                                            </div>
+                                            <div class="nl-title">
+                                                <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+
+
+                                </div>
+                            </div>
+
+
+
+
+                          {% comment %}  <div class="sidebar-widget">
+                                <h2 class="sw-title">Tags Cloud</h2>
+                                <div class="tags">
+                                    <a href="">National</a>
+                                    <a href="">International</a>
+                                    <a href="">Economics</a>
+                                    <a href="">Politics</a>
+                                    <a href="">Lifestyle</a>
+                                    <a href="">Technology</a>
+                                    <a href="">Trades</a>
+                                </div>
+                            </div>{% endcomment %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single News End-->
+
+{% endblock %}

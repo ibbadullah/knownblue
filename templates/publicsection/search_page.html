@@ -1,0 +1,28 @@
+{% extends 'publicsection/base.html' %}
+{% load static %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+
+    <div class="container content-container">
+        <h2>Search Result {{ Message }}</h2><br>
+        {% for article in Data %}
+            <div class="articleCard row">
+                <div class="image col-md-4 col-sm-12">
+                    <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}">
+                </div>
+
+                <div class="articleTitle col-md-8 col-sm-12">
+                    <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}"><h2>{{ article.article_title }}</h2></a>
+                    <p>Published on: {{ article.published_date|date:"d M Y" }} &nbsp;|&nbsp; Author: {{ article.article_author }}</p>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
+    </div>
+
+
+
+{% endblock %}

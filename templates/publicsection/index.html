@@ -1,0 +1,208 @@
+{% extends 'publicsection/base.html' %}
+{% load static %}
+
+{% block title %}Best website for answering science questions - KnownBlue{% endblock %}
+
+{% block description %}KnownBlue is of the best website for answering science questions. You can find the correct answers of different questions on Knownblue.com. KnownBlue also brings quality content about different other fields.{% endblock %}
+{% block keywords %}knownblue,best science questions and answers, best science website for students, best website for answering science questions{% endblock %}
+{% block author %}KnownBlue{% endblock %}
+{% block robots %}index, follow{% endblock %}
+
+{% block ogtitle %}Best website for answering science questions - KnownBlue{% endblock %}
+{% block ogdescription %}KnownBlue is of the best website for answering science questions. You can find the correct answers of different questions on Knownblue.com. KnownBlue also brings quality content about different other fields.{% endblock %}
+{% block ogurl %}https://knownblue.com/contact-us/{% endblock %}
+{% block ogimage %}https://knownblue.com{% static 'front-end/img/default_logo.png' %}{% endblock %}
+
+{% block twittertitle %}Best website for answering science questions - KnownBlue{% endblock %}
+{% block twitterdescription %}KnownBlue is of the best website for answering science questions. You can find the correct answers of different questions on Knownblue.com.{% endblock %}
+{% block twitterimage %}https://knownblue.com{% static 'front-end/img/default_logo.png' %}{% endblock %}
+
+
+{% block pageurl %}https://knownblue.com{% endblock %}
+
+{% block homeActive %}active{% endblock %}
+
+{% block content %}
+
+        <!-- Top Start-->
+        <div class="top-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 tn-left">
+                        <div class="row tn-slider">
+                            {% for article in Articles|slice:"5" %}
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}"/>
+                                        <div class="tn-title">
+                                            <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 tn-right">
+                        <div class="row">
+                            {% for article in Articles|slice:"4" %}
+                                <div class="col-md-6">
+                                    <div class="tn-img">
+                                        <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}"/>
+                                        <div class="tn-title">
+                                            <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top End-->
+
+
+        <!-- Category Start-->
+        <div class="cat-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Chemistry</h2>
+                        <div class="row cn-slider">
+                            {% for article in ChemistryArticles|slice:"8" %}
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}"/>
+                                        <div class="cn-title">
+                                            <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h2>Biology</h2>
+                        <div class="row cn-slider">
+                            {% for article in BioArticles|slice:"8" %}
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}"/>
+                                        <div class="cn-title">
+                                            <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+
+
+    <!-- Category Start-->
+        <div class="cat-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Latest</h2>
+                        <div class="row cn-slider">
+                            {% for article in Articles|slice:"8" %}
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}"/>
+                                        <div class="cn-title">
+                                            <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+
+
+
+
+
+
+        <!-- Tab News Start-->
+        <div class="tab-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#featured">Recent</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="featured" class="container tab-pane active">
+                                {% for article in Articles|slice:"10" %}
+                                    <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}"/>
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <!--Featured content-->
+                    <div class="col-md-6">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#m-viewed">Featured</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="m-viewed" class="container tab-pane active">
+                                {% for article in ChemistryArticles|slice:"10" %}
+                                    <div class="tn-news">
+                                    <div class="tn-img">
+                                        <img src="{{ article.article_image.url }}" alt="{{ article.article_title }}"/>
+                                    </div>
+                                    <div class="tn-title">
+                                        <a href="{% url 'GetSingleArticle' article.Category.category_slug article.article_slug %}">{{ article.article_title }}</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tab News Start-->
+
+
+
+{% endblock %}
